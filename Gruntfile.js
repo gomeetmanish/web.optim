@@ -33,9 +33,9 @@ module.exports = function(grunt) {
                         // },
                         {
                             //name: "small",
-                            width: 100,
+                            width: 500,
                             suffix: "_small",
-                            quality: 60
+                            quality: 50
                         }
                     ]
                 },
@@ -121,7 +121,10 @@ module.exports = function(grunt) {
                     collapseWhitespace: true
                 },
                 files: { // Dictionary of files 
-                    'index.min.html': 'index.html' // 'destination': 'source' 
+                    'index.min.html': 'index.html', // 'destination': 'source' 
+                    'project-2048.min.html': 'project-2048.html',
+                    'project-mobile.min.html': 'project-mobile.html',
+                    'project-webperf.min.html': 'project-webperf.html'
                     // 'dist/contact.html': 'src/contact.html'
                 }
             }
@@ -167,5 +170,5 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-imagemin');
     //grunt.registerTask('default', ['clean', 'mkdir', 'copy', 'responsive_images']);
-    grunt.registerTask('default', ['cssmin']);
+    grunt.registerTask('default', ['htmlmin']);
 };
