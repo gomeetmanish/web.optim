@@ -80,36 +80,13 @@ module.exports = function(grunt) {
             },
         },
 
-        pagespeed: {
-            options: {
-                nokey: true,
-                //url: "https://www.google.com"
-            },
-            prod: {
-                options: {
-                    url: "http://www.amazon.com",
-                    locale: "en_GB",
-                    strategy: "desktop",
-                    threshold: 50
-                }
-            }
-            /*paths: {
-              options: {
-                paths: ["/speed/docs/insights/v1/getting_started", "/speed/docs/about"],
-                locale: "en_GB",
-                strategy: "desktop",
-                threshold: 50
-              		}
-            		}*/
-        },
-
         uglify: {
             my_target: {
                 files: [{
                     expand: true,
                     cwd: 'js',
                     src: '**/*.js',
-                    dest: 'jsmin'
+                    dest: 'js'
                 }]
             }
         },
@@ -121,19 +98,14 @@ module.exports = function(grunt) {
                     collapseWhitespace: true
                 },
                 files: { // Dictionary of files 
+                    'pizza.min.html': 'pizza.html',
                     'index.min.html': 'index.html', // 'destination': 'source' 
                     'project-2048.min.html': 'project-2048.html',
                     'project-mobile.min.html': 'project-mobile.html',
-                    'project-webperf.min.html': 'project-webperf.html'
-                    // 'dist/contact.html': 'src/contact.html'
+                    'project-webperf.min.html': 'project-webperf.html',
+                    'dist/contact.html': 'src/contact.html'
                 }
             }
-            // dev: {                                       // Another target 
-            //   files: {
-            //     'dist/index.html': 'src/index.html',
-            //     'dist/contact.html': 'src/contact.html'
-            //   }
-            // }
         },
 
         cssmin: {
@@ -149,15 +121,15 @@ module.exports = function(grunt) {
         },
 
         imagemin: {
-        dynamic: {                         // Another target 
-      files: [{
-        expand: true,                  // Enable dynamic expansion 
-        cwd: 'imgs/',                   // Src matches are relative to this path 
-        src: ['**/*.{png,jpg,gif}'],   // Actual patterns to match 
-        dest: 'imagessrc/'                  // Destination path prefix 
-      }]
-    }
-}
+            dynamic: { // Another target 
+                files: [{
+                    expand: true, // Enable dynamic expansion 
+                    cwd: 'imgs/', // Src matches are relative to this path 
+                    src: ['**/*.{png,jpg,gif}'], // Actual patterns to match 
+                    dest: 'imagessrc/' // Destination path prefix 
+                }]
+            }
+        }
 
     });
 
@@ -170,5 +142,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-imagemin');
     //grunt.registerTask('default', ['clean', 'mkdir', 'copy', 'responsive_images']);
-    grunt.registerTask('default', ['htmlmin']);
+    //grunt.registerTask('default', ['htmlmin','cssmin']);
+    grunt.registerTask('default', ['uglify']);
 };
